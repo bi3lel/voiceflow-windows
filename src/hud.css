@@ -1,0 +1,21 @@
+html,body { background:transparent; overflow:hidden; }
+body { display:flex; align-items:center; justify-content:center; }
+#pill { height:36px; max-width:calc(100% - 16px); min-width:88px; padding:0 14px; border-radius:14px; display:flex; align-items:center; gap:10px;
+  background:var(--surface); color:var(--text); border:1px solid var(--border-hover); box-shadow:0 2px 5px #00000024;
+  transition:background var(--motion-normal); }
+#wave { height:22px; display:flex; align-items:center; gap:2px; }
+.bar { width:2px; height:var(--height); background:currentColor; border-radius:2px; }
+.recording .bar { animation:wave .65s ease-in-out infinite alternate; animation-delay:var(--delay); }
+.loading .bar { opacity:.45; }
+#dot { width:5px; height:5px; border-radius:50%; background:var(--success); display:none; }
+.recording #dot { display:block; }
+#hud-text { max-width:320px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:12px; }
+.recording #hud-text { display:none; }
+.stopping #wave,.transcribing #wave,.inserting #wave,.result #wave,.error #wave { display:none; }
+#progress { width:12px; height:12px; border:1.5px solid var(--border-hover); border-top-color:var(--muted); border-radius:50%; display:none; }
+.stopping #progress,.transcribing #progress,.inserting #progress { display:block; animation:spin .8s linear infinite; }
+#success,#warning { display:none; width:14px; height:14px; }
+.result #success { display:block; color:var(--success); }
+.error #warning { display:block; color:var(--warning); }
+@keyframes wave { from{transform:scaleY(.55)} to{transform:scaleY(1)} }
+@keyframes spin { to{transform:rotate(360deg)} }

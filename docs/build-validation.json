@@ -1,0 +1,26 @@
+{
+  "version": "1.11.0",
+  "packaged": true,
+  "nativeKeyboard": true,
+  "renderer": {
+    "language": "auto",
+    "model": "models/ggml-large-v3-turbo-q8_0.bin",
+    "bridge": true
+  },
+  "quickSetup": {
+    "step": 4,
+    "downloads": 2,
+    "micTests": 2,
+    "warmed": 2,
+    "editingDownloads": 0,
+    "historyEnabled": true,
+    "setupCompleted": true
+  },
+  "editingDownloadControls": true,
+  "emptyClipboardSnapshot": true,
+  "nativeCaptureAvailable": true,
+  "installerInstalledAndUpdated": true,
+  "microphoneEnumerationWithoutFfmpeg": true,
+  "personalDataBundled": false,
+  "productionDependencyAuditKnownVulnerabilities": 0
+}

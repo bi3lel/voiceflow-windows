@@ -1,0 +1,32 @@
+{
+  "backend": "llamacpp",
+  "runtimes": [
+    {
+      "id": "cpu",
+      "version": "b11146",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11146/llama-b11146-bin-win-cpu-x64.zip",
+      "bytes": 18560055,
+      "sha256": "14cf1303ca9ac3abd94816850532f9f9a69ac66fbaca3776fc6f9061c2fac1d1",
+      "file": "runtime/llama-cpu",
+      "exe": "llama-server.exe"
+    },
+    {
+      "id": "vulkan",
+      "version": "b11146",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11146/llama-b11146-bin-win-vulkan-x64.zip",
+      "bytes": 32127004,
+      "sha256": "55a378aa095b466979d85075234f66d7655c7a7483222af0c006c0e55b4d7bd6",
+      "file": "runtime/llama-vulkan",
+      "exe": "llama-server.exe"
+    }
+  ],
+  "model": {
+    "id": "qwen2.5-3b",
+    "name": "Qwen2.5 3B Q4_K_M",
+    "file": "models/qwen2.5-3b-instruct-q4_k_m.gguf",
+    "url": "https://registry.ollama.ai/v2/library/qwen2.5/blobs/sha256:5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6",
+    "bytes": 1929903008,
+    "sha256": "5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6",
+    "license": "Qwen-Research"
+  }
+}

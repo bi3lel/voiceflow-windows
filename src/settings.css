@@ -1,0 +1,53 @@
+:root { --type-body:16px; --type-label:16px; --type-caption:14px; --type-section:19px; --type-title:28px; --control-m:44px; font-weight:550; }
+#window { height:calc(100% - 44px); display:grid; grid-template-columns:190px minmax(0,1fr); }
+#sidebar { background:var(--surface); padding:24px 12px 16px; display:flex; flex-direction:column; border-right:1px solid var(--border); }
+.sidebar-caption { color:var(--muted); font-size:12px; padding:0 12px 16px; }
+#tabs { display:flex; flex-direction:column; gap:4px; }
+.tab { display:flex; align-items:center; gap:12px; text-align:left; background:transparent; border:0; border-radius:6px; padding:10px 12px; color:var(--muted); }
+.tab.active { background:var(--elevated); color:var(--text); }
+.tab:hover { color:var(--text); }
+#nav-history { display:flex; align-items:center; gap:12px; margin-top:24px; color:var(--muted); text-align:left; }
+.sidebar-note { margin-top:auto; padding:16px 12px 0; color:var(--disabled); font-size:11px; }
+#page { min-height:0; display:flex; flex-direction:column; }
+#page>header { padding:24px 32px; }
+#content { min-height:0; overflow:auto; padding:0 32px 24px; flex:1; }
+.panel { display:none; max-width:680px; margin-inline:auto; }
+.panel.active { display:block; }
+section { padding-bottom:16px; margin-bottom:16px; border-bottom:1px solid var(--border); }
+section:last-child { border-bottom:0; margin-bottom:0; }
+label { display:block; margin-bottom:8px; font-weight:600; }
+.field { margin:16px 0; }
+.inline { display:flex; gap:8px; align-items:center; }
+.inline>input { flex:1; }
+.inline>button { flex-shrink:0; }
+.hint { color:var(--muted); font-size:14px; line-height:1.6; margin:8px 0; }
+.toggle-row,.setting-row { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:8px 0; }
+.toggle-row { margin-bottom:8px; }
+.toggle-row label { margin-bottom:4px; }
+.toggle-row small { display:block; max-width:440px; line-height:1.5; font-size:14px; }
+.switch { position:relative; width:36px; height:20px; flex-shrink:0; margin:0; }
+.switch input { position:absolute; inset:0; opacity:0; width:100%; height:100%; margin:0; z-index:1; cursor:pointer; }
+.switch span { position:absolute; inset:0; border-radius:12px; background:var(--border-hover); transition:background var(--motion-fast); }
+.switch span::after { content:''; position:absolute; width:14px; height:14px; top:3px; left:3px; border-radius:50%; background:#fafafa; transition:transform var(--motion-fast); }
+.switch input:checked+span { background:var(--accent); }
+.switch input:checked+span::after { transform:translateX(16px); }
+.switch input:focus-visible+span { outline:2px solid var(--accent); outline-offset:3px; }
+.segmented { display:flex; padding:3px; border:1px solid var(--border); border-radius:8px; gap:4px; margin-top:16px; max-width:360px; }
+.seg-btn { flex:1; border:0; background:none; color:var(--muted); min-height:28px; }
+.seg-btn.active { background:var(--elevated); color:var(--text); }
+#shortcut-keys { display:flex; gap:4px; margin-top:8px; }
+.slider-row { display:flex; align-items:center; gap:16px; }
+.slider-row input { flex:1; }
+.slider-row output { color:var(--muted); font-size:12px; width:40px; }
+#mic-test { margin-top:12px; }
+.model-actions { margin-top:16px; }
+#diagnostics { max-height:240px; overflow:auto; color:var(--muted); }
+.status { font-size:12px; color:var(--success); }
+#footer { display:flex; align-items:center; justify-content:space-between; padding:16px 32px; border-top:1px solid var(--border); gap:12px; }
+#save-note { font-size:12px; color:var(--muted); }
+#notice-wrap { margin:0 32px 8px; border-top:1px solid var(--border); color:var(--warning); font-size:12px; }
+#notice-wrap summary { color:var(--warning); }
+#last-notice { max-height:80px; overflow:auto; line-height:1.5; white-space:pre-wrap; }
+.tab.active { box-shadow:inset 2px 0 var(--accent); }
+#tab-recording details { margin:12px 0 0; }
+@media(max-width:700px) { #window{grid-template-columns:148px minmax(0,1fr)} #page>header{padding:24px 20px} #content{padding:0 20px 20px} #footer{padding:16px 20px} .toggle-row{gap:12px} #save-note{display:none} }

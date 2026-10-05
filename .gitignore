@@ -1,0 +1,10 @@
+node_modules/
+dist/
+runtime/
+models/
+data/
+setup-cache/
+*.log
+*.partial-*
+*.jks
+.env*

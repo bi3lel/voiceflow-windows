@@ -1,0 +1,4 @@
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const root=path.join(__dirname,'..');let count=0;
+function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){if(['node_modules','dist','runtime','models','data'].includes(e.name))continue;const file=path.join(dir,e.name);if(e.isDirectory())walk(file);else if(file.endsWith('.js')){new vm.Script(fs.readFileSync(file,'utf8'),{filename:file});count++;}else if(file.endsWith('.html')){const text=fs.readFileSync(file,'utf8');for(const m of text.matchAll(/<script>([\s\S]*?)<\/script>/g)){new vm.Script(m[1],{filename:file});count++;}if(/https?:\/\//.test(text.replace(/placeholder="[^"]*"/g,'')))console.log('Review local-only URL in',file);}}}
+walk(root);console.log(`Syntax checked ${count} JS sources and inline scripts`);

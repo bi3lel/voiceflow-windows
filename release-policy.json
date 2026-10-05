@@ -1,0 +1,4 @@
+{
+  "managedEditing": false,
+  "reason": "The public preview includes dictation and punctuation. Managed AI rewriting is unavailable until a suitable editing-model license is cleared. Advanced users can configure their own local Ollama model."
+}

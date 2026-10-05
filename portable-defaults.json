@@ -1,0 +1,6 @@
+{
+  "speechBackend": "parakeet",
+  "useOllama": false,
+  "captureBackend": "native",
+  "historyEnabled": true
+}

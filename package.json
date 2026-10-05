@@ -1,0 +1,95 @@
+{
+  "name": "voiceflow",
+  "version": "1.11.0",
+  "description": "Offline multilingual dictation for Windows",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "npm run build:portable",
+    "test": "node --test test/*.test.js",
+    "check": "node scripts/check.js",
+    "benchmark": "node scripts/benchmark.js",
+    "build:portable": "node scripts/prepare-runtime.cjs && electron-builder --win dir --x64 && node scripts/package-portable.cjs",
+    "build:installer": "node scripts/prepare-runtime.cjs && electron-builder --win --x64"
+  },
+  "dependencies": {
+    "uiohook-napi": "1.5.5"
+  },
+  "devDependencies": {
+    "electron": "44.5.1",
+    "electron-builder": "26.0.12",
+    "7zip-bin": "5.2.0"
+  },
+  "build": {
+    "afterPack": "./scripts/after-pack.cjs",
+    "appId": "com.voiceflow.app",
+    "productName": "VoiceFlow",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/icon.ico",
+      "signAndEditExecutable": false
+    },
+    "files": [
+      "main.js",
+      "ai-runtime-manifest.json",
+      "lib/**/*",
+      "src/**/*",
+      "scripts/windows.ps1",
+      "assets/**/*",
+      "package.json",
+      "scripts/native-capture.cs",
+      "scripts/extract-model-runtime.ps1",
+      "editing-runtime-manifest.json",
+      "release-policy.json"
+    ],
+    "extraResources": [
+      {
+        "from": "runtime/whisper-cpu",
+        "to": "../runtime/whisper-cpu"
+      },
+      {
+        "from": "docs/THIRD_PARTY.md",
+        "to": "../THIRD_PARTY.md"
+      },
+      {
+        "from": "portable-defaults.json",
+        "to": "../portable-defaults.json"
+      },
+      {
+        "from": "scripts/create-desktop-shortcut.ps1",
+        "to": "../scripts/create-desktop-shortcut.ps1"
+      }
+    ],
+    "asarUnpack": [
+      "node_modules/uiohook-napi/**/*",
+      "scripts/windows.ps1",
+      "scripts/native-capture.cs",
+      "scripts/extract-model-runtime.ps1"
+    ],
+    "npmRebuild": false,
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowElevation": false,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "VoiceFlow",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false,
+      "include": "scripts/installer.nsh",
+      "artifactName": "VoiceFlow-Setup-${version}.exe"
+    },
+    "directories": {
+      "output": "dist"
+    }
+  },
+  "license": "MIT",
+  "author": "bi3lel",
+  "homepage": "https://github.com/bi3lel/voiceflow-windows",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bi3lel/voiceflow-windows.git"
+  }
+}

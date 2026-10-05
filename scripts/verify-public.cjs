@@ -1,0 +1,17 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto'),asar=require('@electron/asar');
+const root=path.resolve(__dirname,'..'),dir=path.join(root,'dist/win-unpacked');
+const archive=path.join(dir,'resources/app.asar'),files=asar.listPackage(archive);
+assert(!files.some(f=>/(?:^|[\\/])(?:data|models|test|benchmarks)(?:[\\/]|$)/.test(f)||/\.(?:gguf|onnx|wav|jks)$/i.test(f)));
+assert(files.some(f=>f.endsWith('Parakeet-CC-BY-4.0.txt')));
+assert.equal(JSON.parse(asar.extractFile(archive,'release-policy.json')).managedEditing,false);
+assert.equal(JSON.parse(asar.extractFile(archive,'package.json')).version,'1.11.0');
+assert(!fs.existsSync(path.join(dir,'portable.flag')));
+assert(!fs.existsSync(path.join(dir,'data')));
+assert.deepEqual(fs.readdirSync(path.join(dir,'runtime')),['whisper-cpu']);
+assert(fs.existsSync(path.join(dir,'scripts/create-desktop-shortcut.ps1')));
+const exe=path.join(root,'dist/VoiceFlow-Setup-1.11.0.exe'),b=fs.readFileSync(exe);
+const optional=b.readUInt32LE(0x3c)+24,base=optional+(b.readUInt16LE(optional)===0x20b?112:96);
+assert.equal(b.readUInt32LE(base+32),0,'unexpected signing metadata');
+const digest=crypto.createHash('sha256').update(b).digest('hex');
+fs.writeFileSync(path.join(root,'dist/SHA256SUMS.txt'),digest+'  '+path.basename(exe)+'\n');
+console.log('Public installer verified: '+b.length+' bytes; unsigned; no personal data or weights.');
